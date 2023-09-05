@@ -1,0 +1,2 @@
+# ignore node modules in GitHub
+/node_modules
