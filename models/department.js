@@ -4,46 +4,52 @@
 const connection = require('../db/connection.js');
 
 class Department {
-    constructor(connection) {
-        this.connection = connection;
+    constructor(id, name) {
+        this.id = id;
+      this.name = name;
     }
     // method to get all departments
-    getAllDepartments() {
+    async getAllDepartments() {
         try {
-            return this.connection.promise().query('SELECT * FROM department');
+            const sql = 'SELECT * FROM department';
+            const [rows] = await connection.query(sql);
+            return rows;
         } catch (error) {
             console.log('Error in retrieving departments:', error);
             throw error;
         }
     }
-    // method to add a new department
-    addDepartment(department) {
+    // method to add a new departments
+    async addDepartment(department) {
         try {
-            return this.connection.promise().query('INSERT INTO department (name) VALUES (?)', [department]);
+            const sql = 'INSERT INTO department (name) VALUES (?)';
+            const [result] = await connection.query(sql, [department.name]);
+            return result.insertId;
         } catch (error) {
-            console.log('Error adding department:', error);
+            console.log('Error in adding department:', error);
             throw error;
-          }
+        }
     }
-
     // method to update a department
-    updateDepartment(department) {
+    async updateDepartment(department) {
         try {
-            return this.connection.promise().query('UPDATE department SET name = ? WHERE id = ?', [department]);
+            const sql = 'UPDATE department SET name = ? WHERE id = ?';
+            await connection.query(sql, [department.name, department.id]);
         } catch (error) {
             console.log('Error updating department:', error);
             throw error;
         }
     }
     // method to delete a department
-    deleteDepartment(departmentId) {
+    async deleteDepartment(departmentId) {
         try {
-            return this.connection.promise().query('DELETE FROM department WHERE id = ?', [departmentId]);
+            const sql = 'DELETE FROM department WHERE id = ?';
+            await connection.query(sql,[departmentId]);
         } catch (error) {
             console.log('Error deleting department:', error);
             throw error;
         }
-    }
-}
+    }  
+} 
 
 module.exports = Department;
