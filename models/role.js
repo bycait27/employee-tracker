@@ -26,7 +26,7 @@ class Role {
      // method to add a role
      async addRole(id, title, salary, department_id) {
         try {
-            const sql = 'INSERT INTO roles (id, title, salary, department_id) VALUES (?, ?, ?, ?)';
+            const sql = 'INSERT INTO role (id, title, salary, department_id) VALUES (?, ?, ?, ?)';
             const [result] = await connection.query(sql, [id.name, title.name, salary.name, department_id.name]);
             return result.insertId;
         } catch (error) {
@@ -34,6 +34,8 @@ class Role {
             throw error;
         }
     }
+    // method to delete a role
   }
   
+  // Export Role class
   module.exports = Role;
