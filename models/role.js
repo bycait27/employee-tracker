@@ -1,0 +1,1 @@
+// This file will define the Role model and contain methods for interacting with the role table.
