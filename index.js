@@ -1,1 +1,2 @@
 // serves as the entry point of your application. This file will require the necessary modules and handle the user interaction flow.
+// This file will contain the SQL queries used by the models to interact with the database.
