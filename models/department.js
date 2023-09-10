@@ -3,10 +3,11 @@
 // require connection
 const connection = require('../db/connection.js');
 
+// class for department
 class Department {
     constructor(id, name) {
         this.id = id;
-      this.name = name;
+        this.name = name;
     }
     // method to get all departments
     async getAllDepartments() {
@@ -52,4 +53,5 @@ class Department {
     }  
 } 
 
+// export Department class 
 module.exports = Department;
