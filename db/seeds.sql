@@ -17,7 +17,7 @@ VALUES (1, 'Sales Lead', 100000, 1),
        (5, 'Account Manager', 160000, 3),
        (6, 'Accountant', 125000, 3),
        (7, 'Legal Team Lead', 250000, 4),
-       (8, 'Lawyer', 190000, 4),
+       (8, 'Lawyer', 190000, 4);
 
 /* here we have the values for the employee id, employee first name, employee
 last name, employee role id, and employee manager id */
