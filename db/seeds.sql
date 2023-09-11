@@ -22,7 +22,7 @@ VALUES (1, 'Sales Lead', 100000, 1),
 /* here we have the values for the employee id, employee first name, employee
 last name, employee role id, and employee manager id */
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (1, 'John', 'Doe', 1, 1),
+VALUES (1, 'John', 'Doe', 1, NULL),
        (2, 'Mike', 'Chan', 2, 1),
        (3, 'Ashley', 'Rodriquez', 3, 3),
        (4, 'Kevin', 'Tupik', 4, 3),
