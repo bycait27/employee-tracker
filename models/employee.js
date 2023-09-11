@@ -1,5 +1,3 @@
-// This file will define the Employee model and contain methods for interacting with the employee table.
-
 // require connection
 const connection = require('../db/connection.js');
 

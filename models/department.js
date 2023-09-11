@@ -1,5 +1,3 @@
-// this file will define the Department model and contain methods for interacting with the department table.
-
 // require connection
 const connection = require('../db/connection.js');
 
