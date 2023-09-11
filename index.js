@@ -64,7 +64,7 @@ async function startApp() {
             case 'Delete a role':
                 // call the appropriate method from the Role model to delete a role
                 const deleteRole = new Role();
-                deleteRole.();
+                deleteRole.deleteRole(roleId);
                 break;
             // view all employees
             case 'View all employees':
