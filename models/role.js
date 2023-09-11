@@ -33,6 +33,15 @@ class Role {
         }
     }
     // method to delete a role
+    async deleteRole(roleId) {
+        try {
+            const sql = 'DELETE FROM roles WHERE id = ?';
+            await connection.query(sql,[roleId]);
+        } catch (error) {
+            console.log('Error deleting role:', error);
+            throw error;
+        }
+    }
   }
   
   // Export Role class
