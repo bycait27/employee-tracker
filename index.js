@@ -1,19 +1,64 @@
-// require necessary modules and packages
-const inquirer = require('inquirer');
-const { promptUser } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/prompts.js');
-const Department = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/department.js');
-const Role = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/role.js');
-const Employee = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/employee.js');
-// const sequelize = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/config/connection.js');
-const { createSchema, seedDatabase } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/seeds/seeds.js');
-const { Sequelize } = require('sequelize');
+// // require necessary modules and packages
+// const inquirer = require('inquirer');
+// const { promptUser } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/prompts.js');
+// const Department = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/department.js');
+// const Role = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/role.js');
+// const Employee = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/employee.js');
+// // const sequelize = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/config/connection.js');
+// const { createSchema, seedDatabase } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/seeds/seeds.js');
+// const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('employees_db', 'root', 'happycoding', {
-    host: '127.0.0.1',
-    dialect: 'mysql',
-  });
+// const sequelize = new Sequelize('employees_db', 'root', 'happycoding', {
+//     host: '127.0.0.1',
+//     dialect: 'mysql',
+//   });
 
 // const newSequelize = new Sequelize('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/db/connection.js');
+
+// require mysql2
+const mysql = require('mysql2');
+
+// connect to database
+const connection = mysql.createConnection({
+    hose: '127.0.0.1',
+    user: 'root',
+    password: 'happycoding',
+    database: 'employees_db',
+});
+
+connection.connect((error) => {
+    if (error) {
+      console.error('Error connecting to the database:', error);
+      return;
+    }
+  
+    console.log('Connected to the database.');
+  
+    // execute the SQL queries from schema.sql
+    connection.query(fs.readFileSync('schema.sql', 'utf8'), (error, results) => {
+      if (error) {
+        console.error('Error executing schema.sql:', error);
+        return;
+      }
+  
+      console.log('Schema created.');
+  
+      // execute the SQL queries from seeds.sql
+      connection.query(fs.readFileSync('seeds.sql', 'utf8'), (error, results) => {
+        if (error) {
+          console.error('Error executing seeds.sql:', error);
+          return;
+        }
+  
+        console.log('Seeds inserted.');
+  
+        // perform other actions or start your application here
+  
+        // close the connection when done
+        connection.end();
+      });
+    });
+  });
 
 // function to start application and handle prompts
 async function startApp(sequelize) {
