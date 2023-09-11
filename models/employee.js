@@ -1,17 +1,13 @@
 // require connection
-const connection = require('../db/connection.js');
+// const connection = require('../config/connection.js');
 // require sequelize
-const sequelize = require('sequelize');
+const sequelize = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/config/connection.js');
 const { Model, DataTypes } = require('sequelize');
 
 // class for employee
-class Employee {
-    constructor(id, name) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.role_id = role_id;
-        this.manager_id = manager_id;
+class Employee extends Model {
+    constructor(sequelize) {
+        this.sequelize = sequelize;
     }
 
     // method to get all employees
@@ -97,7 +93,7 @@ Employee.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'employee'
+        modelName: 'Employee'
     }
 );
 

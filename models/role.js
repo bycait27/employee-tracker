@@ -1,17 +1,14 @@
 // require connection
-const connection = require('../db/connection.js');
+// const connection = require('../config/connection.js');
 // require sequelize
-const sequelize = require('sequelize');
+const sequelize = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/config/connection.js');
 const { Model, DataTypes } = require('sequelize');
 
 // class for role 
-class Role {
-    constructor(id, title, salary, department_id) {
-      this.id = id;
-      this.title = title;
-      this.salary = salary;
-      this.department_id = department_id;
-    }
+class Role extends Model {
+    // constructor(sequelize) {
+    //   this.sequelize = sequelize;
+    // }
   
     // method to get all roles
     async getAllRoles() {
@@ -78,7 +75,7 @@ class Role {
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'role'
+        modelName: 'Role'
     }
 );
   

@@ -5,13 +5,18 @@ const Department = require('/Users/caitlinash/Desktop/coding-challenges/employee
 const Role = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/role.js');
 const Employee = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/employee.js');
 
+const sequelize = new Sequelize('employees_db', 'root', 'happycoding', {
+  host: '127.0.0.1',
+  dialect: 'mysql',
+});
+
 // function to create schema
-async function createSchema() {
+async function createSchema(sequelize) {
     // connect to the database
-    const sequelize = new Sequelize('employees_db', 'root', 'happycoding', {
-      host: '127.0.0.1',
-      dialect: 'mysql',
-    });
+    // const sequelize = new Sequelize('employees_db', 'root', 'happycoding', {
+    //   host: '127.0.0.1',
+    //   dialect: 'mysql',
+    // });
 
     // define the models and their relationships
     Department.init(sequelize);
@@ -24,8 +29,10 @@ async function createSchema() {
     console.log('Database schema created successfully.');
 }
 
+// createSchema(sequelize);
+
 // function to add seeds to schema
-async function seedDatabase() {
+async function seedDatabase(sequelize) {
     // create the departments
     await Department.bulkCreate([
       { id: 1, name: 'Sales' },
