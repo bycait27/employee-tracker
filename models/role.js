@@ -1,8 +1,20 @@
 // require connection
 // const connection = require('../config/connection.js');
 // require sequelize
-const sequelize = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/config/connection.js');
-const { Model, DataTypes } = require('sequelize');
+// const sequelize = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/config/connection.js');
+// const { Model, DataTypes } = require('sequelize');
+
+// require mysql2
+const mysql = require('mysql2');
+
+// create a connection pool 
+const pool = mysql.createPool({
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'haooycoding',
+    database: 'employees_db',
+    connectionLimit: 10, // adjust the connection limit as needed
+  });
 
 // class for role 
 class Role extends Model {
