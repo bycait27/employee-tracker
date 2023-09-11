@@ -1,5 +1,8 @@
 // require connection
 const connection = require('../db/connection.js');
+// require sequelize
+const sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 // class for role 
 class Role {
@@ -43,6 +46,41 @@ class Role {
         }
     }
   }
+
+  Role.init(
+    {
+        // define columns and datatypes for the table here
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+          },
+          title: {
+            type: DataTypes.STRING(30),
+            allowNull: false,
+          },
+          salary: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+          },
+          department_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'department',
+                key: 'id',
+                onDelete: 'CASCADE',
+            }
+          }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'role'
+    }
+);
   
   // Export Role class
   module.exports = Role;
