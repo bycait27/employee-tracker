@@ -1,8 +1,11 @@
 // require connection
 const connection = require('../db/connection.js');
+// require sequelize
+const sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 // class for department
-class Department {
+class Department extends Model {
     constructor(id, name) {
         this.id = id;
         this.name = name;
@@ -50,6 +53,28 @@ class Department {
         }
     }  
 } 
+
+Department.init(
+    {
+        // define columns and datatypes for the table here
+          id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+          },
+          name: {
+            type: DataTypes.STRING(30),
+            allowNull: false,
+          }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'department'
+    }
+);
 
 // export Department class 
 module.exports = Department;

@@ -1,17 +1,29 @@
 // require necessary modules and packages
 const inquirer = require('inquirer');
-const { promptUser } = require('/utils/prompts.js');
-const Department = require('/models/department.js');
-const Role = require('/models/role.js');
-const Employee = require('/models/employee.js');
-const { createConnection } = require('/db/connection.js');
-const { createSchema, seedDatabase } = require('/seeds.js');
+const { promptUser } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/prompts.js');
+const Department = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/department.js');
+const Role = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/role.js');
+const Employee = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/employee.js');
+const { createConnection } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/db/connection.js');
+const { createSchema, seedDatabase } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/seeds.js');
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/db/connection.js');
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Database connection has been established successfully.');
+    // Your code here
+  })
+  .catch((error) => {
+    console.error('Unable to connect to the database:', error);
+  });
 
 // function to start application and handle prompts
 async function startApp() {
     try {
         // create database connection
-        const connection = await createConnection();
+        const connection = await createConnection;
 
         // create the database schema if it doesn't exist
         await createSchema(connection);

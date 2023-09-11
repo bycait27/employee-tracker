@@ -1,6 +1,9 @@
 // require necessary packages and modules
 const { Sequelize } = require('sequelize');
-const { Department, Role, Employee } = require('./models');
+// const { Department, Role, Employee } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models');
+const Department = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/department.js');
+const Role = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/role.js');
+const Employee = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/employee.js');
 
 // function to create schema
 async function createSchema() {

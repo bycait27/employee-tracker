@@ -1,5 +1,8 @@
 // require connection
 const connection = require('../db/connection.js');
+// require sequelize
+const sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 // class for employee
 class Employee {
@@ -54,6 +57,49 @@ class Employee {
         }
     }
 }
+
+Employee.init(
+    {
+        // define columns and datatypes for the table here
+          id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+          },
+          first_name: {
+            type: DataTypes.STRING(30),
+            allowNull: false,
+          },
+          last_name: {
+            type: DataTypes.STRING(30),
+            allowNull: false,
+          },
+          role_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'role',
+                key: 'id',
+                onDelete: 'CASCADE',
+            }
+          },
+          manager_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'employee',
+                key: 'id',
+                onDelete: 'CASCADE',
+            }
+          }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'employee'
+    }
+);
 
 // export Employee class
 module.exports = Employee;
