@@ -20,7 +20,7 @@ const pool = mysql.createPool({
                 resolve(results);
               }
             });
-          });
+        });
     }
 
     // function to add a department
