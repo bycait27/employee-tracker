@@ -1,5 +1,8 @@
 /* this is the default data that will be added to each table */
 
+/* use employees_db */
+USE employees_db;
+
 /* here we have the values for the department id and the department name */
 INSERT INTO department (id, name)
 VALUES (1, 'Sales'),

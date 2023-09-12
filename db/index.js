@@ -1,7 +1,16 @@
 // require mysql2
 const mysql = require('mysql2');
+// require fs
+const fs = require("fs");
 // require promptUser module
 const { promptUser } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/prompts.js');
+// require schema.sql
+const path = require('path');
+// const filePath = path.join(__dirname, 'db/schema.sql');
+// read the contents of schema.sql and seeds.sql files
+const schemaSql = fs.readFileSync(path.join(__dirname, 'schema.sql'), 'utf8');
+const seedsSql = fs.readFileSync(path.join(__dirname, 'seeds.sql'), 'utf8');
+
 // require department.js functions
 const {
     getAllDepartments,
@@ -22,7 +31,6 @@ const {
     updateEmployeeRole,
     deleteEmployee,
 } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/employee.js');
-
 
 // connect to database
 const connection = mysql.createConnection({
@@ -74,23 +82,22 @@ const connection = mysql.createConnection({
   
     console.log('Connected to the database.');
   
-    // execute the SQL queries from schema.sql
-    connection.query(fs.readFileSync('schema.sql', 'utf8'), (error, results) => {
+    // execute the SQL queries from schema.sql and seeds.sql
+    connection.execute(schemaSql, (error, results) => {
+    if (error) {
+      console.error('Error executing schema.sql:', error);
+      return;
+    }
+
+    console.log('Schema created.');
+
+    connection.execute(seedsSql, (error, results) => {
       if (error) {
-        console.error('Error executing schema.sql:', error);
+        console.error('Error executing seeds.sql:', error);
         return;
       }
-  
-      console.log('Schema created.');
-  
-      // execute the SQL queries from seeds.sql
-      connection.query(fs.readFileSync('seeds.sql', 'utf8'), (error, results) => {
-        if (error) {
-          console.error('Error executing seeds.sql:', error);
-          return;
-        }
-  
-        console.log('Seeds inserted.');
+
+      console.log('Seeds inserted.');
   
         // start your application
         startApp();

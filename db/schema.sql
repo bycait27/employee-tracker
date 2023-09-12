@@ -1,6 +1,6 @@
 /* creates a database for the employee data to be stored */
 DROP DATABASE IF EXISTS employees_db;
-CREATE database employees_db;
+CREATE DATABASE employees_db;
 
 /* uses this database we created */
 USE employees_db;
@@ -27,7 +27,7 @@ CREATE TABLE role (
 CREATE TABLE employee (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL, */
+    last_name VARCHAR(30) NOT NULL, 
     /* add reference to employee role */
     role_id INT NOT NULL,
     CONSTRAINT fk_role
