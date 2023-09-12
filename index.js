@@ -1,14 +1,28 @@
 // require mysql2
 const mysql = require('mysql2');
-
+// require promptUser module
 const { promptUser } = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/prompts.js');
-
+// require department.js functions
 const {
     getAllDepartments,
     addDepartment,
     updateDepartment,
     deleteDepartment,
-} = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/models/department.js');
+} = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/department.js');
+// require role.js functions
+const {
+    getAllRoles,
+    addRole,
+    deleteRole,
+} = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/role.js');
+// require employee.js functions
+const {
+    getAllEmployees,
+    addEmployee,
+    updateEmployeeRole,
+    deleteEmployee,
+} = require('/Users/caitlinash/Desktop/coding-challenges/employee-tracker/utils/employee.js');
+
 
 // connect to database
 const connection = mysql.createConnection({
@@ -31,19 +45,19 @@ const connection = mysql.createConnection({
         } else if (answers.action === 'Delete a department') {
             deleteDepartment();
         } else if (answers.action === 'View all roles') {
-
+            getAllRoles();
         } else if (answers.action === 'Add a role') {
-
+            addRole();
         } else if (answers.action === 'Delete a role') {
-
+            deleteRole();
         } else if (answers.action === 'View all employees') {
-
+            getAllEmployees();
         } else if (answers.action === 'Add an employee') {
-
+            addEmployee();
         } else if (answers.action === 'Update employee role') {
-
+            updateEmployeeRole();
         } else if (answers.action === 'Delete an employee') {
-
+            deleteEmployee();
         };
     })
     .catch(err => {
@@ -86,50 +100,3 @@ const connection = mysql.createConnection({
       });
     });
   });
-//        
-//             // view all roles
-//             case 'View all roles':
-//                 // call the appropriate method from the Role model to view all roles
-//                 const role = new Role(sequelize);
-//                 role.getAllRoles();
-//                 break;
-//             // add a role
-//             case 'Add a role':
-//                 // call the appropriate method from the Role model to add a role
-//                 const addRole = new Role(sequelize);
-//                 addRole.addRole(id, title, salary, department_id);
-//                 break;
-//             // delete a role
-//             case 'Delete a role':
-//                 // call the appropriate method from the Role model to delete a role
-//                 const deleteRole = new Role(sequelize);
-//                 deleteRole.deleteRole(roleId);
-//                 break;
-//             // view all employees
-//             case 'View all employees':
-//                 // call the appropriate method from the Employee model to view all employees
-//                 const employee = new Employee(sequelize);
-//                 employee.getAllEmployees();
-//                 break;
-//             // add an employee
-//             case 'Add an employee':
-//                 // call the appropriate method from the Employee model to add an employee
-//                 const addEmployee = new Employee(sequelize);
-//                 addEmployee.addEmployee();
-//                 break;
-//             // update employee role
-//             case 'Update employee role':
-//                 // call the appropriate method from the Employee model to update an employee role
-//                 const updateEmployeeRole = new Employee(sequelize);
-//                 updateEmployeeRole.updateEmployeeRole(roleId, employeeId);
-//                 break;
-//             // delete an employee
-//             case 'Delete an employee':
-//                 // call the appropriate method from the Employee model to delete an employee
-//                 const deleteEmployee = new Employee(sequelize);
-//                 deleteEmployee.deleteEmployee(employeeId);
-//                 break;
-//             default:
-//                 console.log('Goodbye!');
-//                 break;
-//         }
