@@ -30,7 +30,21 @@ const connection = mysql.createConnection({
             updateDepartment();
         } else if (answers.action === 'Delete a department') {
             deleteDepartment();
-        } 
+        } else if (answers.action === 'View all roles') {
+
+        } else if (answers.action === 'Add a role') {
+
+        } else if (answers.action === 'Delete a role') {
+
+        } else if (answers.action === 'View all employees') {
+
+        } else if (answers.action === 'Add an employee') {
+
+        } else if (answers.action === 'Update employee role') {
+
+        } else if (answers.action === 'Delete an employee') {
+
+        };
     })
     .catch(err => {
         console.log(err);
