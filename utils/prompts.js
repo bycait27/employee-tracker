@@ -1,7 +1,15 @@
-// This file will define the inquirer prompts used for user input.
-
 // require inquirer package
 const inquirer = require('inquirer');
+// require mysql2
+// const mysql = require('mysql2');
+
+// create connection to mysql database
+// const connection = mysql.createConnection({
+//     hose: '127.0.0.1',
+//     user: 'root',
+//     password: 'happycoding',
+//     database: 'employees_db',
+// });
 
 // function to prompt user with questions
 const promptUser = () => {
@@ -14,7 +22,7 @@ const promptUser = () => {
                     type: 'list',
                     name: 'choice',
                     message: 'What would you like to do?:',
-                    choices: ['View all departments, Add a department', 'Update a department', 'Delete a department', 
+                    choices: ['View all departments', 'Add a department', 'Update a department', 'Delete a department', 
                     'View all roles', 'Add a role', 'Delete a role', 
                     'View all employees', 'Add an employee', 'Update employee role', 'Delete an employee'],
                 },
